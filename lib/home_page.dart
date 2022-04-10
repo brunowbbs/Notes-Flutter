@@ -7,7 +7,7 @@ class HomePage extends StatefulWidget{
 }
 
 class _HomePageState extends State<HomePage> {
-  var notes = <String>['Tarefa 0', 'Tarefa 1', 'Tarefa 2'];
+  var notes = <String>[];
 
   @override
   Widget build(BuildContext context) {
@@ -25,12 +25,20 @@ class _HomePageState extends State<HomePage> {
                 child: ListTile(
                   title:Text(notes[i]),
                   onTap: () async{
-                    var description = await Navigator.pushNamed(context, '/create-note', arguments: notes[i]);
+                    var response = await Navigator.pushNamed(context, '/create-note', arguments: notes[i]);
 
-                    if(description!=null){
-                      setState(() {
-                        notes[i] = description.toString();                        
-                      });
+                    if(response!=null){
+                      String description = response.toString();
+
+                      if(description.isEmpty){
+                        setState(() {
+                          notes.removeAt(i);                        
+                        });
+                      }else{
+                        setState(() {
+                          notes[i] = description.toString();                        
+                        });
+                      }
                     }
                   },
                 ),

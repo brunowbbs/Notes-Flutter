@@ -38,7 +38,10 @@ class _CreateNotePageState extends State<CreateNotePage> {
         title:  Text( isEditing ? 'Edit Note': 'Create Note'),
         centerTitle: true,
         actions: [
-          IconButton(icon:const Icon(Icons.delete), onPressed: (){})
+          if(isEditing)
+          IconButton(icon:const Icon(Icons.delete), onPressed: (){
+            Navigator.pop(context,"");
+          })
         ],
       ),
       body: Column(
