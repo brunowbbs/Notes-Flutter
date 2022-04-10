@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notes/create_note_page.dart';
 
 class HomePage extends StatefulWidget{
 
@@ -31,9 +32,15 @@ class _HomePageState extends State<HomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: (){
-          setState(() {
-            notes.add('Tarefa ${notes.length.toString()}');
-          });
+          Navigator.push(context, 
+            MaterialPageRoute(builder:(context)=>CreateNotePage())).then((value) => {
+              setState((){
+                notes.add(value);
+              })
+            });
+          //setState(() {
+            //notes.add('Tarefa ${notes.length.toString()}');
+          //});
         },
         backgroundColor: Colors.green,
         child: const Icon(Icons.add),
