@@ -48,9 +48,12 @@ class _CreateNotePageState extends State<CreateNotePage> {
         //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children:  [
            Padding(
-            padding: const EdgeInsets.all(20.0),
+            padding: const EdgeInsets.all(32.0),
             child: TextField(
               //maxLines: 5,
+              decoration: const InputDecoration(
+                labelText: "Descrição"
+              ),
               controller: textController,
               maxLength: 100,
               onChanged: (value){
@@ -63,6 +66,7 @@ class _CreateNotePageState extends State<CreateNotePage> {
               ),*/
             ),
           ),
+          
           if(description.isNotEmpty) ElevatedButton(
             onPressed: (){
               Navigator.pop(context, description);
